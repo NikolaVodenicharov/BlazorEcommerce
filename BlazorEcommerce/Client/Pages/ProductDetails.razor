@@ -1,5 +1,5 @@
 ﻿@page "/product/{id:int}"
-@inject IProductService ProductService
+@inject IProductsService ProductsService
 
 @if(product == null)
 {
@@ -30,7 +30,7 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        product = await ProductService.GetById(Id);
+        product = await ProductsService.GetById(Id);
 
         if (product == null)
         {

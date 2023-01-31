@@ -10,7 +10,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-builder.Services.AddScoped<IProductService, ProductService>();  
+builder.Services.AddScoped<IProductsService, ProductsService>();  
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();  
 
 await builder.Build().RunAsync();
