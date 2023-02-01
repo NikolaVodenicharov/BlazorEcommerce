@@ -12,16 +12,24 @@ namespace BlazorEcommerce.Server.Services.ProductServices
             _dataContext = dataContext;
         }
 
-        public async Task<Product> GetProductAsync(int productId)
+        public async Task<Product> GetProductAsync(int id)
         {
-            var product = await _dataContext.Products.FirstOrDefaultAsync(p => p.Id == productId);
+            var product = await _dataContext
+                .Products
+                .Include(p => p.Variants)
+                .ThenInclude(pv => pv.ProductType)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             return product;
         }
 
         public async Task<List<Product>> GetProductsAsync()
         {
-            var products = await _dataContext.Products.ToListAsync();
+            var products = await _dataContext
+                .Products
+                .Include(p => p.Variants)
+                .ThenInclude(pv => pv.ProductType)
+                .ToListAsync();
 
             return products;
         }
@@ -30,6 +38,8 @@ namespace BlazorEcommerce.Server.Services.ProductServices
         {
             var products = await _dataContext
                 .Products
+                .Include(p => p.Variants)
+                .ThenInclude(pv => pv.ProductType)
                 .Where(p => p.Category.Url.ToLower() == categoryUrl.ToLower())
                 .ToListAsync();
 

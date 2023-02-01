@@ -9,19 +9,17 @@ namespace BlazorEcommerce.Server.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly DataContext db;
         private readonly IProductsService _productsService;
 
-        public ProductsController(DataContext db, IProductsService productsService)
+        public ProductsController(IProductsService productsService)
         {
-            this.db = db;
             _productsService = productsService;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var products = await db.Products.ToListAsync();
+            var products = await _productsService.GetProductsAsync();
 
             return Ok(products);
         }
@@ -37,7 +35,7 @@ namespace BlazorEcommerce.Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Product>>> GetProduct(int id)
         {
-            var product = await db.Products.FirstOrDefaultAsync(p => p.Id == id);
+            var product = await _productsService.GetProductAsync(id);
 
             return Ok(product);
         }

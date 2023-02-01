@@ -3,6 +3,7 @@ using BlazorEcommerce.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorEcommerce.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230201091547_AddProductVariants")]
+    partial class AddProductVariants
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,10 +263,10 @@ namespace BlazorEcommerce.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("OriginalPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18.2)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18.2)");
 
                     b.HasKey("ProductId", "ProductTypeId");
 
@@ -283,7 +286,7 @@ namespace BlazorEcommerce.Server.Migrations
                         {
                             ProductId = 1,
                             ProductTypeId = 3,
-                            OriginalPrice = 11.99m,
+                            OriginalPrice = 0m,
                             Price = 7.99m
                         },
                         new
@@ -304,42 +307,42 @@ namespace BlazorEcommerce.Server.Migrations
                         {
                             ProductId = 3,
                             ProductTypeId = 2,
-                            OriginalPrice = 8.99m,
+                            OriginalPrice = 0m,
                             Price = 6.99m
                         },
                         new
                         {
                             ProductId = 4,
                             ProductTypeId = 5,
-                            OriginalPrice = 5.99m,
+                            OriginalPrice = 0m,
                             Price = 3.99m
                         },
                         new
                         {
                             ProductId = 4,
                             ProductTypeId = 6,
-                            OriginalPrice = 14.99m,
+                            OriginalPrice = 0m,
                             Price = 9.99m
                         },
                         new
                         {
                             ProductId = 4,
                             ProductTypeId = 7,
-                            OriginalPrice = 24.99m,
+                            OriginalPrice = 0m,
                             Price = 19.99m
                         },
                         new
                         {
                             ProductId = 5,
                             ProductTypeId = 5,
-                            OriginalPrice = 4.99m,
+                            OriginalPrice = 0m,
                             Price = 3.99m
                         },
                         new
                         {
                             ProductId = 6,
                             ProductTypeId = 5,
-                            OriginalPrice = 4.99m,
+                            OriginalPrice = 0m,
                             Price = 2.99m
                         },
                         new
@@ -353,7 +356,7 @@ namespace BlazorEcommerce.Server.Migrations
                         {
                             ProductId = 7,
                             ProductTypeId = 9,
-                            OriginalPrice = 99.00m,
+                            OriginalPrice = 0m,
                             Price = 69.99m
                         },
                         new
@@ -374,7 +377,7 @@ namespace BlazorEcommerce.Server.Migrations
                         {
                             ProductId = 9,
                             ProductTypeId = 8,
-                            OriginalPrice = 24.99m,
+                            OriginalPrice = 0m,
                             Price = 14.99m
                         },
                         new

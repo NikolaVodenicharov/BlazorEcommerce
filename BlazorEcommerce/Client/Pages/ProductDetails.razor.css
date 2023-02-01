@@ -34,3 +34,7 @@
 .media-body {
     flex: 1;
 }
+
+.original-price{
+    text-decoration: line-through;
+}

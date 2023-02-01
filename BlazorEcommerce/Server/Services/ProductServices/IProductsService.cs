@@ -6,7 +6,7 @@
 
         public Task<List<Product>> GetProductsByCategoryAsync(string categoryUrl);
 
-        public Task<Product> GetProductAsync(int productId);
+        public Task<Product> GetProductAsync(int id);
 
     }
 }
