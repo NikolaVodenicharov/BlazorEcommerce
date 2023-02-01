@@ -6,6 +6,9 @@
 
         public Task<List<Product>> GetProductsByCategoryAsync(string categoryUrl);
 
+        public Task<List<Product>> GetProductsBySearchAsync(string searchText);
+        public Task<List<string>> GetSearchSuggestionsAsync(string searchText);
+
         public Task<Product> GetProductAsync(int id);
 
     }

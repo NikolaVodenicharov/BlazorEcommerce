@@ -3,7 +3,7 @@
 
 @if(ProductsService.Products == null || ProductsService.Products.Count == 0)
 {
-    <span>Loading products...</span>
+    <span>@ProductsService.Message</span>
 }
 else
 {
@@ -12,7 +12,7 @@ else
         {
             <li class="media my-3">
                 <div class="media-img-wrapper mr-2">
-                    <a href="/product/@product.Id">
+                    <a href="/product/@product.Id"> 
                         <img class="media-img" src="@product.ImageUrl" alt="@product.Title" />
                     </a>
                 </div>

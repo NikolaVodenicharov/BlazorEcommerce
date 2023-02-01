@@ -16,6 +16,8 @@ namespace BlazorEcommerce.Client.Services.ProductServices
 
         public List<Product> Products { get; set; } = new List<Product>();
 
+        public string Message { get; set; }
+
         public async Task<Product> GetById(int id)
         {
             var result = await _httpClient.GetFromJsonAsync<Product>($"api/Products/{id}");
@@ -38,6 +40,39 @@ namespace BlazorEcommerce.Client.Services.ProductServices
             }
 
             ProductsChanged.Invoke();
+        }
+
+        public async Task LoadSearchProductsAsync(string searchText)
+        {
+            var url = $"api/Products/search/{searchText}";
+
+            var result = await _httpClient.GetFromJsonAsync<List<Product>>(url);
+
+            if (result == null)
+            {
+                return;
+            }
+
+            if (result.Count == 0)
+            {
+                Message = "No products found";
+            }
+
+            if (result != null)
+            {
+                Products = result;
+            }
+
+            ProductsChanged.Invoke();
+        }
+
+        public async Task<List<string>> GetSearchSuggestionsAsync(string searchText)
+        {
+            var url = $"api/Products/search-suggestions/{searchText}";
+
+            var suggestions = await _httpClient.GetFromJsonAsync<List<string>>(url);
+
+            return suggestions;
         }
     }
 }
